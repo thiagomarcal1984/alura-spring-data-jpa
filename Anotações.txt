@@ -46,3 +46,8 @@ repositório desejado com o parâmetro:
 	public SpringDataApplication(CargoRepository repository){
 		this.repository = repository;
 	}
+
+Outra forma de injetar o repositório é usando a anotação @Autowired na 
+propriedade privada (ela não pode ser final):
+	@Autowired
+	private CargoRepository repository;
