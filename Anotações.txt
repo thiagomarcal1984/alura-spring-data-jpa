@@ -33,3 +33,16 @@ Nota: o código main não está funcionando com esta declaração de CargoReposi
     
     // Voltou a funcionar depois que defini parâmetros para CrudRepository:
     public interface CargoRepository extends CrudRepository<Cargo,Integer>{...}
+
+A Classe SpringDataApplication (a que contém o método main) precisa implementar
+a interface CommandLineRunner para executar outros comandos além do 
+carregamento do Spring.
+
+O Spring usa muito a injeção de dependência.
+Para injetar um repositório, é necessário criar um construtor que use o 
+repositório desejado com o parâmetro:
+	private final CargoRepository repository;
+
+	public SpringDataApplication(CargoRepository repository){
+		this.repository = repository;
+	}
