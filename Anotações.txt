@@ -6,3 +6,12 @@ Project Metadata:
     packaging: jar (não war)
     dependencies: Spring Data JPA (apenas)
     
+Procure no MVN Repository por MariaDB Java Client e coloque a dependência no
+arquivo pom.xml.
+
+O arquivo src/main/resources/application.properties contém as configurações
+necessárias para que a aplicação Spring se comunique com o database.
+
+Comando do plugin Spring Boot no Maven:
+    mvn spring-boot:run     (impede a execução de outros goals do Maven.)
+    mvn spring-boot:start   (não impede a execução de outros goals do Maven.)

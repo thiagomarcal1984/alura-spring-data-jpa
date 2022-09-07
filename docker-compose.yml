@@ -6,6 +6,6 @@ services:
       - MARIADB_USER=usuario
       - MARIADB_PASSWORD=senha
       - MARIADB_ROOT_PASSWORD=root
-      - MARIADB_DATABASE=teste
+      - MARIADB_DATABASE=alura
     ports:
       - 3306:3306
