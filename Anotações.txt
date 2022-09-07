@@ -55,3 +55,5 @@ propriedade privada (ela não pode ser final):
 A anotação @Service é usada para que o Spring reconheça a classe anotada.
 Sem essa anotação, a classe principal do Spring não consegue usar a classe
 anotada, mesmo que válida.
+
+O método save do CrudRepository serve tanto para CREATE quanto para UPDATE.
