@@ -51,3 +51,7 @@ Outra forma de injetar o repositório é usando a anotação @Autowired na
 propriedade privada (ela não pode ser final):
 	@Autowired
 	private CargoRepository repository;
+
+A anotação @Service é usada para que o Spring reconheça a classe anotada.
+Sem essa anotação, a classe principal do Spring não consegue usar a classe
+anotada, mesmo que válida.
