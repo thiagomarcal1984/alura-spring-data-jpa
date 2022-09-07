@@ -61,3 +61,6 @@ O método save do CrudRepository serve tanto para CREATE quanto para UPDATE.
 Qual a finalidade de utilizarmos o Optional retornado pelo método findById?
 O findById sempre devolve um Optional, que sabe se o elemento existe ou não. 
 Assim, não precisamos lidar com null ou tratar uma exceção.
+
+Alternativa para input: ao invés de Scanner scanner.next(), use 
+System.console().readline();
