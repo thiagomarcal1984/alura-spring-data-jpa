@@ -22,3 +22,14 @@ Arquitetura do Spring Data (do mais abstrato para o mais concreto):
 Após a criação de uma entidade, rode a aplicação e verifique as tabelas criadas
 pelo Spring Data JPA (no curso usamos o DBeaver para ver o banco):
     mvn spring-boot:run
+
+Comparado com o JPA, o Spring Data já deixa pronto os repositórios, sem 
+necessidade de criar EntityManagerFactory, EntityManager, transações etc. Basta
+implementar uma das interfaces Repository do Spring Data. Neste exemplo, usamos
+a interface CrudRepository na interface CargoRepository.
+
+Nota: o código main não está funcionando com esta declaração de CargoRepository:
+    public interface CargoRepository extends CrudRepository { ... }
+    
+    // Voltou a funcionar depois que defini parâmetros para CrudRepository:
+    public interface CargoRepository extends CrudRepository<Cargo,Integer>{...}
