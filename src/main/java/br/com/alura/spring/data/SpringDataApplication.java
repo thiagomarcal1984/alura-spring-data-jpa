@@ -11,6 +11,7 @@ import br.com.alura.spring.data.orm.Cargo;
 import br.com.alura.spring.data.service.CrudCargoService;
 import br.com.alura.spring.data.service.CrudFuncionarioService;
 import br.com.alura.spring.data.service.CrudUnidadeTrabalhoService;
+import br.com.alura.spring.data.service.RelatorioService;
 
 @SpringBootApplication
 public class SpringDataApplication implements CommandLineRunner {
@@ -20,6 +21,8 @@ public class SpringDataApplication implements CommandLineRunner {
 	private CrudFuncionarioService funcionarioService;
 	@Autowired
 	private CrudUnidadeTrabalhoService unidadeTrabalhoService;
+	@Autowired
+	private RelatorioService relatorioService;
 
 	private Boolean system = true;
 
@@ -39,8 +42,9 @@ public class SpringDataApplication implements CommandLineRunner {
 			System.out.println("1 - Cargo");
 			System.out.println("2 - Funcionário");
 			System.out.println("3 - Unidade de trabalho");
+			System.out.println("4 - Relatórios");
 
-			int action = scanner.nextInt();
+			int action = Integer.parseInt(System.console().readLine());
 			switch (action) {
 				case 1:
 					cargoService.inicial(scanner);
@@ -50,6 +54,9 @@ public class SpringDataApplication implements CommandLineRunner {
 					break;
 				case 3:
 					unidadeTrabalhoService.inicial(scanner);
+					break;
+				case 4:
+					relatorioService.inicial(scanner);
 					break;
 				default:
 					system = false;

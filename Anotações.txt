@@ -64,3 +64,13 @@ Assim, não precisamos lidar com null ou tratar uma exceção.
 
 Alternativa para input: ao invés de Scanner scanner.next(), use 
 System.console().readline();
+
+Como criar Query Methods nos repositórios do Spring Data: 
+https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#jpa.query-methods.query-creation
+
+Acrescente na assinatura da interface o método com a sintaxe:
+    List<Classe> findBy<Propriedade1><?Keyword><?And/Or><Propriedade2><?Keyword>
+
+    Ex.: 
+        List<Funcionario> findByNome(String nome);
+        List<Funcionario> findByNomeContaining(String nome);
