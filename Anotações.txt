@@ -1,0 +1,8 @@
+Criação de um novo projeto Spring: https://start.spring.io/
+Project Metadata:
+    group: br.com.alura
+    artifact: spring-data
+    package-name br.com.alura.spring.data (sem o hifen)
+    packaging: jar (não war)
+    dependencies: Spring Data JPA (apenas)
+    
