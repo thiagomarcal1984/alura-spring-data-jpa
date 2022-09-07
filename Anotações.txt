@@ -15,3 +15,10 @@ necessárias para que a aplicação Spring se comunique com o database.
 Comando do plugin Spring Boot no Maven:
     mvn spring-boot:run     (impede a execução de outros goals do Maven.)
     mvn spring-boot:start   (não impede a execução de outros goals do Maven.)
+
+Arquitetura do Spring Data (do mais abstrato para o mais concreto):
+    SpringData -> JPA -> Hibernate -> JDBC -> Driver 
+
+Após a criação de uma entidade, rode a aplicação e verifique as tabelas criadas
+pelo Spring Data JPA (no curso usamos o DBeaver para ver o banco):
+    mvn spring-boot:run
