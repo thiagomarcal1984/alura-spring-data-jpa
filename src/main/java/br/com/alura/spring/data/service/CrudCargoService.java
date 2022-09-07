@@ -1,5 +1,6 @@
 package br.com.alura.spring.data.service;
 
+import java.util.Optional;
 import java.util.Scanner;
 
 import org.springframework.stereotype.Service;
@@ -59,15 +60,22 @@ public class CrudCargoService {
         System.out.println("Informe a ID do cargo que será alterado: ");
         Integer id = scanner.nextInt();
 
-        System.out.println("Descrição do cargo");
-        String descricao = scanner.next();
+        Optional<Cargo> resultado = cargoRepository.findById(id);
         
-        Cargo cargo = new Cargo();
-        cargo.setId(id);
-        cargo.setDescricao(descricao);
-        cargoRepository.save(cargo);
-
-        System.out.println("Atualizado.");
+        if (resultado.isPresent()) {
+            Cargo cargo = resultado.get();
+            System.out.println("Cargo localizado: " + cargo);
+            
+            System.out.println("Informe a nova descrição do cargo:");
+            String descricao = scanner.next();
+            
+            cargo.setDescricao(descricao);
+            cargoRepository.save(cargo);
+    
+            System.out.println("Atualizado.");
+        } else {
+            System.out.println("Cargo não encontrado.");
+        }
     }
 
     private void visualizar() {
