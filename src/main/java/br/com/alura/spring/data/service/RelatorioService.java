@@ -2,6 +2,7 @@ package br.com.alura.spring.data.service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Scanner;
 
@@ -21,15 +22,15 @@ public class RelatorioService {
         Boolean system = true;
         while (system) {
             System.out.println("Qual ação de relatório deseja executar? ");
-            System.out.println("(-1) - Busca com Query JPQL");
             System.out.println("0 - Sair");
             System.out.println("1 - Busca funcionário nome");
+            System.out.println("2 - Busca funcionario nome, data contratacao e salario maior");
             switch (Integer.parseInt(System.console().readLine())) {
-                case -1:
-                    queryEmRepository();
-                    break;
                 case 1:
                     buscaFuncionarioNome();
+                    break;
+                case 2:
+                    buscaFuncionarioNomeSalarioMaiorData();
                     break;
                 default:
                     system = false;
@@ -46,17 +47,19 @@ public class RelatorioService {
         list.forEach(System.out::println);
     }
 
-    private void queryEmRepository() {
-        System.out.println(
-            "Buscando o Zina, que ganha 5 mil e foi contratado "
-            + "em 10/10/2000: ");
+    private void buscaFuncionarioNomeSalarioMaiorData() {
+        System.out.println("Qual nome deseja pesquisar?");
+        String nome = System.console().readLine();
+        
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        System.out.println("Qual data contrataçao deseja pesquisar? (Formato dd/MM/yyyy):");
+        LocalDate data = LocalDate.parse(System.console().readLine(), formatter);
+
+        System.out.println("Qual salário deseja pesquisar?");
+        BigDecimal salario = new BigDecimal(System.console().readLine());
         
         List<Funcionario> lista = funcionarioRepository
-            .findNomeSalarioMaiorDataContratacao(
-                "ZINA", 
-                new BigDecimal("5000"), 
-                LocalDate.parse("2000-10-10")
-            );
+            .findNomeSalarioMaiorDataContratacao(nome, salario, data);
         
         lista.forEach(System.out::println);
     }
