@@ -74,3 +74,16 @@ Acrescente na assinatura da interface o método com a sintaxe:
     Ex.: 
         List<Funcionario> findByNome(String nome);
         List<Funcionario> findByNomeContaining(String nome);
+
+Usando as derived queries pode ter como consequência métodos com nomes muito 
+extensos. Uma alternativa às derived queries (métodos de consulta derivados
+das propriedades das classes) é anotar o método com Query e inserir um JPQL:
+
+    @Query(
+        "SELECT f FROM Funcionario f "
+        + "WHERE f.nome = :nome "
+        + "AND f.salario = :salario "
+        + "AND f.dataContratacao = :data"
+    )
+    List<Funcionario> findNomeSalarioMaiorDataContratacao(
+        String nome, BigDecimal salario, LocalDate data);
