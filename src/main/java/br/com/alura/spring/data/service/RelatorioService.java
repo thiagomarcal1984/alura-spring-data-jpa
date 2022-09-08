@@ -17,6 +17,8 @@ public class RelatorioService {
     
     @Autowired
     private FuncionarioRepository funcionarioRepository;
+
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     
     public void inicial(Scanner scanner) {
         Boolean system = true;
@@ -25,12 +27,16 @@ public class RelatorioService {
             System.out.println("0 - Sair");
             System.out.println("1 - Busca funcionário nome");
             System.out.println("2 - Busca funcionario nome, data contratacao e salario maior");
+            System.out.println("3 - Busca funcionário data contratacao");
             switch (Integer.parseInt(System.console().readLine())) {
                 case 1:
                     buscaFuncionarioNome();
                     break;
                 case 2:
                     buscaFuncionarioNomeSalarioMaiorData();
+                    break;
+                case 3:
+                    buscaFuncionarioDataContratacao();
                     break;
                 default:
                     system = false;
@@ -51,7 +57,6 @@ public class RelatorioService {
         System.out.println("Qual nome deseja pesquisar?");
         String nome = System.console().readLine();
         
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         System.out.println("Qual data contrataçao deseja pesquisar? (Formato dd/MM/yyyy):");
         LocalDate data = LocalDate.parse(System.console().readLine(), formatter);
 
@@ -62,5 +67,12 @@ public class RelatorioService {
             .findNomeSalarioMaiorDataContratacao(nome, salario, data);
         
         lista.forEach(System.out::println);
+    }
+
+    private void buscaFuncionarioDataContratacao() {
+        System.out.println("Qual data contrataçao deseja pesquisar? (Formato dd/MM/yyyy):");
+        LocalDate data = LocalDate.parse(System.console().readLine(), formatter);
+        List<Funcionario> list = funcionarioRepository.findDataContratacaoMaior(data);
+        list.forEach(System.out::println);
     }
 }
