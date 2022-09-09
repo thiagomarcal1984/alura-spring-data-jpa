@@ -115,3 +115,14 @@ Alguns repositórios de destaque no Spring Data:
     * JpaRepository (usada para arquivos em lote)
 
 * Repositories não tão usadas assim.
+
+O método PageRequest.of(page, size, sort) cria um objeto page.
+Ordenação: o parâmetro Sort pode ser gerado pelo método 
+Sort.by(Sort.Direction.<ASC/DESC>, String ... properties)):
+
+    Pageable pageable = PageRequest.of(
+        page-1, 2, Sort.by(Sort.Direction.DESC, "nome"));
+
+    // Ordenação complexa.
+    Sort.Order[] ordem = {Sort.Order.asc("salario"), Sort.Order.desc("nome")};
+    Pageable pageable = PageRequest.of(page-1, 2, Sort.by(ordem));
