@@ -107,3 +107,11 @@ PagingAndSortingRepository: Pageable e Page.
     Page<T> é o objeto resultante da busca em um PagingAndSortingRepository.
     Esse objeto tem métodos para controlar a paginação (total de elementos,
     de páginas, página atual etc.).
+
+Alguns repositórios de destaque no Spring Data:
+    CrudRepository (com funções de CRUD)
+    PagingAndSortingRepository (para paginação)
+    * ReactiveCrudRepository (usada para programação funcional)
+    * JpaRepository (usada para arquivos em lote)
+
+* Repositories não tão usadas assim.
