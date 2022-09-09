@@ -97,3 +97,13 @@ native = true:
         nativeQuery = true
     )
     List<Funcionario> findDataContratacaoMaior(LocalDate data);
+
+Paginação: há dois objetos que são gerados a partir de repositórios da classe
+PagingAndSortingRepository: Pageable e Page.
+
+    Pageable é uma classe que determina como será feita a consulta ao 
+    repositório: página (base zero), tamanho por página e ordenação.
+
+    Page<T> é o objeto resultante da busca em um PagingAndSortingRepository.
+    Esse objeto tem métodos para controlar a paginação (total de elementos,
+    de páginas, página atual etc.).
