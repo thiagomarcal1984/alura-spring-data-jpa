@@ -126,3 +126,38 @@ Sort.by(Sort.Direction.<ASC/DESC>, String ... properties)):
     // Ordenação complexa.
     Sort.Order[] ordem = {Sort.Order.asc("salario"), Sort.Order.desc("nome")};
     Pageable pageable = PageRequest.of(page-1, 2, Sort.by(ordem));
+
+Spring Data trabalha com o conceito de Projeção, que é uma interface resumida
+da entidade que se quer representar. Ela conterá apenas os getters necessários.
+
+A ideia é que o repositório contenha métodos que retornam Projeções resultantes
+da execução de SQL nativo (Interface based Projection):
+    // interface da projeção:
+    public interface FuncionarioProjecao {
+        Integer getId();
+        String getNome();
+        BigDecimal getSalario();
+    }
+
+    // Método do repositório com retorno da entidade projetada:
+    @Query(value = "SELECT f.id, f.nome, f.salario FROM funcionarios", 
+        nativeQuery = true)
+    List<FuncionarioProjecao> findFuncionarioSalario();
+
+É possível projetar classes ao invés de interfaces (Class based Projection): 
+    // Classe projetada Dto
+    public class FuncionarioDto {
+        private Integer id;
+        private String nome;
+        private Double salario;
+
+        //getter e setter
+
+        //construtor recebendo os atributos 
+        //na ordem da query
+    }
+
+    // Método do repositório com retorno da classe projetada:
+    @Query(value = "SELECT f.id, f.nome, f.salario FROM funcionarios f", 
+        nativeQuery = true)
+    List<FuncionarioDto> findFuncionarioSalarioComProjecaoClasse();
