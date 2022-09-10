@@ -161,3 +161,8 @@ da execução de SQL nativo (Interface based Projection):
     @Query(value = "SELECT f.id, f.nome, f.salario FROM funcionarios f", 
         nativeQuery = true)
     List<FuncionarioDto> findFuncionarioSalarioComProjecaoClasse();
+
+Os objetos Specification do Spring Data simplificam a criação de Criteria
+Queries do JPA. Essas specifications podem ser inseridas no método findAll()
+dos repositórios, para acrescentar as diversas cláusulas que as Criteria 
+Queries fornecem (filtram dados).
